@@ -9,5 +9,6 @@ collections:
   - name: 'parks'
     label: 'Park'
     folder: '_parks/'
+    create: true
     fields:
       - { label: "Park Name", name: 'name', widget: "string" }
