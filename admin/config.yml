@@ -10,6 +10,5 @@ collections:
     label: 'Park'
     folder: '_parks/'
     create: true
-    slug: name
     fields:
       - { label: "Park Name", name: 'name', widget: "string" }
