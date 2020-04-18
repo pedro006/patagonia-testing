@@ -19,6 +19,17 @@ excerpt: This is the greatest website on earth. Share! Like! Subscribe! I'm dead
 <div id="map"></div>
 <div class="submit">submit</div>
 <script>
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", user => {
+      if (!user) {
+        window.netlifyIdentity.on("login", () => {
+          document.location.href = "/admin/";
+        });
+      }
+    });
+  }
+</script>
+<script>
 
   var allModules = $.find('.location-module')
   var allInputs = $.find('input')
@@ -124,15 +135,4 @@ excerpt: This is the greatest website on earth. Share! Like! Subscribe! I'm dead
     }).fit()
   
 
-</script>
-<script>
-  if (window.netlifyIdentity) {
-    window.netlifyIdentity.on("init", user => {
-      if (!user) {
-        window.netlifyIdentity.on("login", () => {
-          document.location.href = "/admin/";
-        });
-      }
-    });
-  }
 </script>
