@@ -10,4 +10,4 @@ collections:
     label: 'Park'
     folder: '_parks/'
     fields:
-      - { label: "Park Name", name: 'title', widget: "string" }
+      - { label: "Park Name", name: 'name', widget: "string" }
