@@ -72,6 +72,7 @@ excerpt: This is the greatest website on earth. Share! Like! Subscribe! I'm dead
       {% endfor %}
     ])
     .then(function(){
+      console.log(this.get())
       var map = this.get(0)
       var markers = this.get(1)
       var infowindows = this.get(2)

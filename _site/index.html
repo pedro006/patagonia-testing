@@ -82,6 +82,11 @@
 </div>
 
 <div class="location-module">
+<div class="address">Parque Nacional Patagonia</div>
+<a class="add">add</a>
+</div>
+
+<div class="location-module">
 <div class="address">Queulat National Park</div>
 <a class="add">add</a>
 </div>
@@ -158,6 +163,13 @@
       },
        
       {
+        address: 'Parque Nacional Patagonia',
+        animation: "DROP",
+        icon: "img/marker-2.svg",
+        zIndex: 9
+      },
+       
+      {
         address: 'Queulat National Park',
         animation: "DROP",
         icon: "img/marker-2.svg",
@@ -192,6 +204,12 @@
       },
        
       {
+        address: 'Parque Nacional Patagonia',
+        content: 'Parque Nacional Patagonia',
+        zIndex: 99
+      },
+       
+      {
         address: 'Queulat National Park',
         content: 'Queulat National Park',
         zIndex: 99
@@ -199,6 +217,7 @@
       
     ])
     .then(function(){
+      console.log(this.get())
       var map = this.get(0)
       var markers = this.get(1)
       var infowindows = this.get(2)
