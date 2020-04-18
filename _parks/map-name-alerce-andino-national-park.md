@@ -1,3 +1,3 @@
 ---
-name: " Alerce Andino National Park"
+name: Alerce Andino National Park
 ---

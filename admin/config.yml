@@ -11,4 +11,4 @@ collections:
     folder: '_parks/'
     create: true
     fields:
-      - { label: "Park Name", name: 'name', widget: "string" }
+      - { label: "Park Name", name: name, widget: "string" }
