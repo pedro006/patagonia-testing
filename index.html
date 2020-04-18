@@ -1,0 +1,127 @@
+---
+layout: default
+title: "Home Page"
+fulltitle: "My New Website | Update Coming August 2004"
+excerpt: This is the greatest website on earth. Share! Like! Subscribe! I'm dead inside!
+---
+
+{% for park in site.parks%}
+<div class="location-module">
+<div class="address">{{park.name}}</div>
+<a class="add">add</a>
+</div>
+{% endfor %}
+<input type="text" name="origin" value="">
+<input type="text" name="stop" value="">
+<input type="text" name="destination" value="">
+
+
+<div id="map"></div>
+<div class="submit">submit</div>
+<script>
+
+  var allModules = $.find('.location-module')
+  var allInputs = $.find('input')
+  allModules.forEach( function(module, current) {
+    //console.log(module)
+    var addButton = $(module).find('.add')
+    console.log(addButton)
+    var value = module.innerText
+    addButton.on('click', function(){
+      
+        if ($('input').attr('name', 'origin')) {
+          console.log('origin')
+        } 
+        else if($('input').attr('name', 'destination')){
+          console.log('desitination')
+          } else {
+                      console.log('waypoints')
+
+          }
+      
+    })
+  });
+
+  $('#map')
+    .gmap3({
+      address: "chile",
+      zoom: 6,
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+      mapTypeControl: false,
+      navigationControl: false,
+      scrollwheel: true,
+      streetViewControl: false
+    })
+    .marker([
+      {% for park in site.parks %} 
+      {
+        address: '{{park.name}}',
+        animation: "DROP",
+        icon: "img/marker-2.svg",
+        zIndex: 9
+      },
+      {% endfor %}
+    ])
+    .infowindow([
+      {% for park in site.parks %} 
+      {
+        address: '{{park.name}}',
+        content: '{{park.name}}',
+        zIndex: 99
+      },
+      {% endfor %}
+    ])
+    .then(function(){
+      var map = this.get(0)
+      var markers = this.get(1)
+      var infowindows = this.get(2)
+      var allLocations = $.find('.address')
+      var submitButton = $('.submit')
+      console.log(allLocations)
+
+      markers.forEach(function(marker, current){    
+        var infowindow = infowindows[current]
+        var location = allLocations[current]
+
+        location.addEventListener('mouseover', function(){
+          map.panTo(marker.position)
+        })
+
+        marker.addListener('click', function(){         
+          infowindows.forEach(function(i){
+            i.close(map)
+          })
+          infowindow.open(map, marker)
+        })
+      })
+
+      submitButton.click(function() {
+        console.log(markers[0])
+        $('#map')
+        .gmap3()
+        .route({
+          origin:"paris, france",
+          waypoints: [{location:"lyon, france"},],
+          destination:"marseille, france",
+         travelMode: google.maps.DirectionsTravelMode.DRIVING
+        })
+        .directionsrenderer(function (results) {
+          console.log(results)
+        
+          if (results) {
+            return {
+             markerOptions: {
+               animation: "DROP",
+                icon: "img/marker-2.svg",
+              
+             },
+              panel: "#box",
+              directions: results
+            }
+          }
+        });
+      });
+    }).fit()
+  
+
+</script>
