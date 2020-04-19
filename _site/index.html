@@ -4,9 +4,9 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!-->
 <html class="no-js">
-    <!--<![endif]-->
+<!--<![endif]-->
 
-    <head>
+<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -48,19 +48,21 @@
 	<link rel="stylesheet" href="/css/main.css">
 	<!-- Put your fonts here -->
 
+
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-tC3fpwc-WlPTWoP2v_4q1HCeYjdtAKk"></script>
+	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/gmap3/7.2.0/gmap3.min.js"></script>
 	<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-tC3fpwc-WlPTWoP2v_4q1HCeYjdtAKk">
-    </script><script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/gmap3/7.2.0/gmap3.min.js"></script	
 </head>
 
-    <body>
-        <!--[if lt IE 8]>
+
+<body>
+  <!--[if lt IE 8]>
 		<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 		<![endif]-->
 
-        
+  
 <div class="location-module">
 <div class="address">Puerto Montt Los Lagos Chile</div>
 <a class="add">add</a>
@@ -108,17 +110,17 @@
     console.log(addButton)
     var value = module.innerText
     addButton.on('click', function(){
-      
+
         if ($('input').attr('name', 'origin')) {
           console.log('origin')
-        } 
+        }
         else if($('input').attr('name', 'destination')){
           console.log('desitination')
           } else {
                       console.log('waypoints')
 
           }
-      
+
     })
   });
 
@@ -133,42 +135,42 @@
       streetViewControl: false
     })
     .marker([
-       
+      
       {
         address: 'Puerto Montt Los Lagos Chile',
         animation: "DROP",
         icon: "img/marker-2.svg",
         zIndex: 9
       },
-       
+      
       {
         address: 'Termas de Pichicolo Hualaihué, Chile',
         animation: "DROP",
         icon: "img/marker-2.svg",
         zIndex: 9
       },
-       
+      
       {
         address: 'Chaitén Los Lagos Chile',
         animation: "DROP",
         icon: "img/marker-2.svg",
         zIndex: 9
       },
-       
+      
       {
         address: 'Cerro Castillo National Reserve',
         animation: "DROP",
         icon: "img/marker-2.svg",
         zIndex: 9
       },
-       
+      
       {
         address: 'Parque Nacional Patagonia',
         animation: "DROP",
         icon: "img/marker-2.svg",
         zIndex: 9
       },
-       
+      
       {
         address: 'Queulat National Park',
         animation: "DROP",
@@ -178,37 +180,37 @@
       
     ])
     .infowindow([
-       
+      
       {
         address: 'Puerto Montt Los Lagos Chile',
         content: 'Puerto Montt Los Lagos Chile',
         zIndex: 99
       },
-       
+      
       {
         address: 'Termas de Pichicolo Hualaihué, Chile',
         content: 'Termas de Pichicolo Hualaihué, Chile',
         zIndex: 99
       },
-       
+      
       {
         address: 'Chaitén Los Lagos Chile',
         content: 'Chaitén Los Lagos Chile',
         zIndex: 99
       },
-       
+      
       {
         address: 'Cerro Castillo National Reserve',
         content: 'Cerro Castillo National Reserve',
         zIndex: 99
       },
-       
+      
       {
         address: 'Parque Nacional Patagonia',
         content: 'Parque Nacional Patagonia',
         zIndex: 99
       },
-       
+      
       {
         address: 'Queulat National Park',
         content: 'Queulat National Park',
@@ -225,7 +227,7 @@
       var submitButton = $('.submit')
       console.log(allLocations)
 
-      markers.forEach(function(marker, current){    
+      markers.forEach(function(marker, current){
         var infowindow = infowindows[current]
         var location = allLocations[current]
 
@@ -233,7 +235,7 @@
           map.panTo(marker.position)
         })
 
-        marker.addListener('click', function(){         
+        marker.addListener('click', function(){
           infowindows.forEach(function(i){
             i.close(map)
           })
@@ -253,13 +255,13 @@
         })
         .directionsrenderer(function (results) {
           console.log(results)
-        
+
           if (results) {
             return {
              markerOptions: {
                animation: "DROP",
                 icon: "img/marker-2.svg",
-              
+
              },
               panel: "#box",
               directions: results
@@ -268,25 +270,25 @@
         });
       });
     }).fit()
-  
+
 
 </script>
 
 
-        <script>
-  if (window.netlifyIdentity) {
-    window.netlifyIdentity.on("init", user => {
-      if (!user) {
-        window.netlifyIdentity.on("login", () => {
-          document.location.href = "/admin/";
-        });
-      }
-    });
-  }
-</script>
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
 
-    </body>
+</body>
 
-    <script src="js/app.js"></script>
+<script src="js/app.js"></script>
 
 </html>

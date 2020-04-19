@@ -28,17 +28,17 @@ excerpt: This is the greatest website on earth. Share! Like! Subscribe! I'm dead
     console.log(addButton)
     var value = module.innerText
     addButton.on('click', function(){
-      
+
         if ($('input').attr('name', 'origin')) {
           console.log('origin')
-        } 
+        }
         else if($('input').attr('name', 'destination')){
           console.log('desitination')
           } else {
                       console.log('waypoints')
 
           }
-      
+
     })
   });
 
@@ -53,7 +53,7 @@ excerpt: This is the greatest website on earth. Share! Like! Subscribe! I'm dead
       streetViewControl: false
     })
     .marker([
-      {% for park in site.parks %} 
+      {% for park in site.parks %}
       {
         address: '{{park.name}}',
         animation: "DROP",
@@ -63,7 +63,7 @@ excerpt: This is the greatest website on earth. Share! Like! Subscribe! I'm dead
       {% endfor %}
     ])
     .infowindow([
-      {% for park in site.parks %} 
+      {% for park in site.parks %}
       {
         address: '{{park.name}}',
         content: '{{park.name}}',
@@ -80,7 +80,7 @@ excerpt: This is the greatest website on earth. Share! Like! Subscribe! I'm dead
       var submitButton = $('.submit')
       console.log(allLocations)
 
-      markers.forEach(function(marker, current){    
+      markers.forEach(function(marker, current){
         var infowindow = infowindows[current]
         var location = allLocations[current]
 
@@ -88,7 +88,7 @@ excerpt: This is the greatest website on earth. Share! Like! Subscribe! I'm dead
           map.panTo(marker.position)
         })
 
-        marker.addListener('click', function(){         
+        marker.addListener('click', function(){
           infowindows.forEach(function(i){
             i.close(map)
           })
@@ -108,13 +108,13 @@ excerpt: This is the greatest website on earth. Share! Like! Subscribe! I'm dead
         })
         .directionsrenderer(function (results) {
           console.log(results)
-        
+
           if (results) {
             return {
              markerOptions: {
                animation: "DROP",
                 icon: "img/marker-2.svg",
-              
+
              },
               panel: "#box",
               directions: results
@@ -123,6 +123,6 @@ excerpt: This is the greatest website on earth. Share! Like! Subscribe! I'm dead
         });
       });
     }).fit()
-  
+
 
 </script>
