@@ -7,8 +7,8 @@ excerpt: This is the greatest website on earth. Share! Like! Subscribe! I'm dead
 
 {% for park in site.parks%}
 <div class="location-module">
-<div class="address">{{park.name}}</div>
-<a class="add">add</a>
+  <div class="address">{{park.name}}</div>
+  <a class="add">add</a>
 </div>
 {% endfor %}
 <input type="text" name="origin" value="">
@@ -19,26 +19,24 @@ excerpt: This is the greatest website on earth. Share! Like! Subscribe! I'm dead
 <div id="map"></div>
 <div class="submit">submit</div>
 <script>
-
   var allModules = $.find('.location-module')
   var allInputs = $.find('input')
-  allModules.forEach( function(module, current) {
+  allModules.forEach(function(module, current) {
     //console.log(module)
     var addButton = $(module).find('.add')
     console.log(addButton)
     var value = module.innerText
-    addButton.on('click', function(){
-      
-        if ($('input').attr('name', 'origin')) {
-          console.log('origin')
-        } 
-        else if($('input').attr('name', 'destination')){
-          console.log('desitination')
-          } else {
-                      console.log('waypoints')
+    addButton.on('click', function() {
 
-          }
-      
+      if ($('input').attr('name', 'origin')) {
+        console.log('origin')
+      } else if ($('input').attr('name', 'destination')) {
+        console.log('desitination')
+      } else {
+        console.log('waypoints')
+
+      }
+
     })
   });
 
@@ -55,23 +53,23 @@ excerpt: This is the greatest website on earth. Share! Like! Subscribe! I'm dead
     .marker([
       {% for park in site.parks %} 
       {
-        address: '{{park.name}}',
+        address: {address: '{{park.name}}', region: 'CL'},
+        title: '{{park.name}}',
         animation: "DROP",
         icon: "img/marker-2.svg",
-        zIndex: 9
+        optimized: false
       },
       {% endfor %}
     ])
     .infowindow([
       {% for park in site.parks %} 
       {
-        address: '{{park.name}}',
         content: '{{park.name}}',
-        zIndex: 99
       },
       {% endfor %}
     ])
-    .then(function(){
+    .then(function(result) {
+      console.log(this.get(), result)
       var map = this.get(0)
       var markers = this.get(1)
       var infowindows = this.get(2)
@@ -79,16 +77,16 @@ excerpt: This is the greatest website on earth. Share! Like! Subscribe! I'm dead
       var submitButton = $('.submit')
       console.log(allLocations)
 
-      markers.forEach(function(marker, current){    
+      markers.forEach(function(marker, current) {
         var infowindow = infowindows[current]
         var location = allLocations[current]
 
-        location.addEventListener('mouseover', function(){
+        location.addEventListener('mouseover', function() {
           map.panTo(marker.position)
         })
 
-        marker.addListener('click', function(){         
-          infowindows.forEach(function(i){
+        marker.addListener('click', function() {
+          infowindows.forEach(function(i) {
             i.close(map)
           })
           infowindow.open(map, marker)
@@ -98,30 +96,30 @@ excerpt: This is the greatest website on earth. Share! Like! Subscribe! I'm dead
       submitButton.click(function() {
         console.log(markers[0])
         $('#map')
-        .gmap3()
-        .route({
-          origin:"paris, france",
-          waypoints: [{location:"lyon, france"},],
-          destination:"marseille, france",
-         travelMode: google.maps.DirectionsTravelMode.DRIVING
-        })
-        .directionsrenderer(function (results) {
-          console.log(results)
-        
-          if (results) {
-            return {
-             markerOptions: {
-               animation: "DROP",
-                icon: "img/marker-2.svg",
-              
-             },
-              panel: "#box",
-              directions: results
+          .gmap3()
+          .route({
+            origin: "paris, france",
+            waypoints: [{
+              location: "lyon, france"
+            }, ],
+            destination: "marseille, france",
+            travelMode: google.maps.DirectionsTravelMode.DRIVING
+          })
+          .directionsrenderer(function(results) {
+            console.log(results)
+
+            if (results) {
+              return {
+                markerOptions: {
+                  animation: "DROP",
+                  icon: "img/marker-2.svg",
+
+                },
+                panel: "#box",
+                directions: results
+              }
             }
-          }
-        });
+          });
       });
     }).fit()
-  
-
 </script>
