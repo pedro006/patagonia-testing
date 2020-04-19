@@ -4,9 +4,9 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!-->
 <html class="no-js">
-    <!--<![endif]-->
+<!--<![endif]-->
 
-    <head>
+<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -48,18 +48,21 @@
 	<link rel="stylesheet" href="/css/main.css">
 	<!-- Put your fonts here -->
 
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-tC3fpwc-WlPTWoP2v_4q1HCeYjdtAKk">
-    </script><script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-tC3fpwc-WlPTWoP2v_4q1HCeYjdtAKk"></script>
+	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/gmap3/7.2.0/gmap3.min.js"></script>
-	
+	<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
 </head>
 
-    <body>
-        <!--[if lt IE 8]>
+
+<body>
+  <!--[if lt IE 8]>
 		<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 		<![endif]-->
 
-        
+  
 <div class="location-module">
   <div class="address">Puerto Montt Los Lagos Chile</div>
   <a class="add">add</a>
@@ -72,6 +75,21 @@
 
 <div class="location-module">
   <div class="address">Chaitén Los Lagos Chile</div>
+  <a class="add">add</a>
+</div>
+
+<div class="location-module">
+  <div class="address">Cerro Castillo National Reserve</div>
+  <a class="add">add</a>
+</div>
+
+<div class="location-module">
+  <div class="address">Santiago, Chile</div>
+  <a class="add">add</a>
+</div>
+
+<div class="location-module">
+  <div class="address">Queulat National Park</div>
   <a class="add">add</a>
 </div>
 
@@ -139,6 +157,30 @@
         icon: "img/marker-2.svg",
         optimized: false
       },
+       
+      {
+        address: {address: 'Cerro Castillo National Reserve', region: 'CL'},
+        title: 'Cerro Castillo National Reserve',
+        animation: "DROP",
+        icon: "img/marker-2.svg",
+        optimized: false
+      },
+       
+      {
+        address: {address: 'Santiago, Chile', region: 'CL'},
+        title: 'Santiago, Chile',
+        animation: "DROP",
+        icon: "img/marker-2.svg",
+        optimized: false
+      },
+       
+      {
+        address: {address: 'Queulat National Park', region: 'CL'},
+        title: 'Queulat National Park',
+        animation: "DROP",
+        icon: "img/marker-2.svg",
+        optimized: false
+      },
       
     ])
     .infowindow([
@@ -153,6 +195,18 @@
        
       {
         content: 'Chaitén Los Lagos Chile',
+      },
+       
+      {
+        content: 'Cerro Castillo National Reserve',
+      },
+       
+      {
+        content: 'Santiago, Chile',
+      },
+       
+      {
+        content: 'Queulat National Park',
       },
       
     ])
@@ -212,8 +266,20 @@
     }).fit()
 </script>
 
-    </body>
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
 
-    <script src="js/app.js"></script>
+</body>
+
+<script src="js/app.js"></script>
 
 </html>
