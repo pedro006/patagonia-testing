@@ -50,24 +50,21 @@ excerpt: This is the greatest website on earth. Share! Like! Subscribe! I'm dead
       scrollwheel: true,
       streetViewControl: false
     })
+    {% for park in site.parks %} 
     .marker([
-      {% for park in site.parks %} 
       {
         address: {address: '{{park.name}}', region: 'CL'},
         title: '{{park.name}}',
         animation: "DROP",
         icon: "img/marker-2.svg",
-        optimized: false
       },
-      {% endfor %}
     ])
     .infowindow([
-      {% for park in site.parks %} 
       {
         content: '{{park.name}}',
       },
-      {% endfor %}
     ])
+     {% endfor %}
     .then(function(result) {
       console.log(this.get(), result)
       var map = this.get(0)

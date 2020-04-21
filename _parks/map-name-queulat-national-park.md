@@ -1,3 +1,0 @@
----
-name: Queulat National Park
----

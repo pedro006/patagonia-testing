@@ -1,3 +1,0 @@
----
-name: Santiago, Chile
----
